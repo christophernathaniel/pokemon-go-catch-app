@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [pokeList, setPokeList] = useState([]);
 
-  const fetchData = async () => {
+  // Request to fetch Pokemon
+  // useCallback to memorize callback function
+  // Only run the request once
+  const fetchPokemon = useCallback(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((res) => res.json())
-      .then((data) => setData(data.results));
+      .then((data) => {
+        setPokeList(data);
+      });
+  }, []);
 
-    console.log(data);
-  };
+  // On List Change fetch new Pokemon List
+  useEffect(() => {
+    fetchPokemon();
+  }, [fetchPokemon]); // Only Target new Pokemon List on List Change
 
   return <div className="App"></div>;
 }
