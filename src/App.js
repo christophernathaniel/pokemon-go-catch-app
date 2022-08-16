@@ -10,7 +10,7 @@ function App() {
   // useCallback to memorize callback function
   // Only run the request once
   const fetchPokemon = useCallback(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/")
+    fetch("https://pokeapi.co/api/v2/pokemon/" + queryParams)
       .then((res) => res.json())
       .then((data) => {
         setPokeList(data.results);
@@ -36,6 +36,14 @@ function App() {
           <li>{pokemon.name}</li>
         ))}
       </ul>
+      {currentPage < totalPages && (
+        <button
+          className="show-more"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Show More
+        </button>
+      )}
     </div>
   );
 }
