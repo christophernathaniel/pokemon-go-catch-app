@@ -8,7 +8,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0); // Current Page Number
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
   const [totalResults, setTotalResults] = useState(null); // Total Result Count
-  const [pokeSearchValue, onPokeSearchValue] = useState(""); // Search Value
+  const [pokeSearchValue, setPokeSearchValue] = useState(""); // Search Value
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
@@ -16,12 +16,21 @@ function App() {
     (e) => {
       pokeSearchValue !== "" && setQueryParams(`/${pokeSearchValue}`);
     },
-    [setQueryParams, currentPage, pokeSearchValue]
+    [setQueryParams, pokeSearchValue, setCurrentPage]
   );
 
-  // useEffect(() => {
-  //   fetchPokeSearch();
-  // }, [fetchPokeSearch]);
+  // Set Rules for Input Change
+  const pokeInputChange = (inputValue) => {
+    setPokeSearchValue(inputValue);
+
+    if (inputValue === "") {
+      setCurrentPage(0);
+    }
+
+    if (inputValue !== "") {
+      setCurrentPage(null);
+    }
+  };
 
   // Request to fetch Pokemon
   // useCallback to memorize callback function
@@ -50,19 +59,22 @@ function App() {
       <ul className="results">
         <PokeSearch
           pokeSearchValue={pokeSearchValue}
-          onPokeSearchValue={onPokeSearchValue}
+          onPokeSearchValue={setPokeSearchValue}
           searchEvent={fetchPokeSearch}
+          pokeInputChange={pokeInputChange}
         />
         {!pokeSearchValue &&
           pokeList.map((pokemon) => (
             <PokeItem key={pokemon.name} name={pokemon.name} />
           ))}
       </ul>
-      <Pagination
-        totalResults={totalResults}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {currentPage !== null && (
+        <Pagination
+          totalResults={totalResults}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
   );
 }
