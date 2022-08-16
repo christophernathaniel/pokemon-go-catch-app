@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import PokeItem from "./Component/PokeItem";
 import PokeSearch from "./Component/PokeSearch";
+import Pagination from "./Atom/Pagination";
+
 function App() {
   const [pokeList, setPokeList] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -50,22 +52,11 @@ function App() {
           <PokeItem key={pokemon.name} name={pokemon.name} />
         ))}
       </ul>
-      {currentPage >= 1 && (
-        <button
-          className="show-less"
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Show Less
-        </button>
-      )}
-      {currentPage < totalResults && (
-        <button
-          className="show-more"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Show More
-        </button>
-      )}
+      <Pagination
+        totalResults={totalResults}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }
