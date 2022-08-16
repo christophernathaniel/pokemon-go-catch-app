@@ -4,20 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 const Pokemon = () => {
   let name = useParams();
 
-  let defaultPokeState = {
-    image: "",
-    id: null,
-    speed: "",
-    shiny: false,
-    hp: 0,
-    defence: 0,
-    attack: 0,
-    specialDefence: 0,
-    specialAttack: 0,
-    weight: 0,
-    types: [],
-    sprites: [],
-  };
+  let defaultPokeState = null;
 
   const [pokeStat, setPokeStat] = useState(defaultPokeState);
 
@@ -41,24 +28,27 @@ const Pokemon = () => {
       <h1>Pokemon</h1>
       <h2>{pokeStat.name}</h2>
       <img src={pokeStat.sprites.front_default} /> */}
+      {pokeStat && (
+        <>
+          <h2>Pokemon Name: {pokeStat.name}</h2>
+          <img src={pokeStat.sprites.front_default} />
 
-      <h2>{pokeStat.name}</h2>
-      <img src={pokeStat.sprites.front_default} />
-
-      <table class="table-fixed">
-        <thead>
-          <tr>
-            <th>Base</th>
-            <th>Stats</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-          </tr>
-        </tbody>
-      </table>
+          <table class="table-fixed">
+            <thead>
+              <tr>
+                <th>Base</th>
+                <th>Stats</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Attack</td>
+                <td>{pokeStat.stats[4].base_stat}</td>
+              </tr>
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 };
