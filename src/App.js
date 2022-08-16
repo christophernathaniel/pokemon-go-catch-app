@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link, Outlet } from "react-router-dom";
 import PokeItem from "./Component/PokeItem";
 import PokeSearch from "./Component/PokeSearch";
 import Pagination from "./Atom/Pagination";
@@ -9,7 +10,6 @@ function App() {
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
   const [totalResults, setTotalResults] = useState(null); // Total Result Count
   const [pokeSearchValue, setPokeSearchValue] = useState(""); // Search Value
-  const [currentView, setCurrentView] = useState(""); // Current View
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
