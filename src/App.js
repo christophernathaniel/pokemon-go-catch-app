@@ -1,11 +1,20 @@
 import { useState, useEffect, useCallback } from "react";
 import PokeItem from "./Component/PokeItem";
-
+import PokeSearch from "./Component/PokeSearch";
 function App() {
   const [pokeList, setPokeList] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0");
   const [totalResults, setTotalResults] = useState(null);
+  const [pokeSearchValue, onPokeSearchValue] = useState("");
+
+  const fetchPokeSearch = useCallback((e) => {
+    console.log("retrieved");
+  }, []);
+
+  // useEffect(() => {
+  //   fetchPokeSearch();
+  // }, [fetchPokeSearch]);
 
   // Request to fetch Pokemon
   // useCallback to memorize callback function
@@ -32,6 +41,11 @@ function App() {
     <div className="App">
       <h1>Pokemon List</h1>
       <ul className="results">
+        <PokeSearch
+          pokeSearchValue={pokeSearchValue}
+          onPokeSearchValue={onPokeSearchValue}
+          searchEvent={fetchPokeSearch}
+        />
         {pokeList.map((pokemon) => (
           <PokeItem key={pokemon.name} name={pokemon.name} />
         ))}
