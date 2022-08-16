@@ -24,22 +24,18 @@ const Pokemon = () => {
 
   return (
     <div className="poke-card">
-      {/* {console.log(pokeStat.sprites.front_default)}
-      <h1>Pokemon</h1>
-      <h2>{pokeStat.name}</h2>
-      <img src={pokeStat.sprites.front_default} /> */}
       {pokeStat && (
         <>
           <h2>Pokemon Name: {pokeStat.name}</h2>
           <img src={pokeStat.sprites.front_default} />
 
-          <div class="types">
+          <div className="types">
             {pokeStat.types.map((type) => (
-              <div>{type.type.name}</div>
+              <div key={type.slot}>{type.type.name}</div>
             ))}
           </div>
 
-          <table class="table-fixed">
+          <table className="table-fixed">
             <thead>
               <tr>
                 <th>Base</th>

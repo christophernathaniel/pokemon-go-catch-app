@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PokeItem from "./Component/PokeItem";
 import PokeSearch from "./Component/PokeSearch";
 import Pagination from "./Atom/Pagination";
 
 function App() {
+  const history = useNavigate();
+
   const [pokeList, setPokeList] = useState([]); // Current Pokemon Character List
   const [currentPage, setCurrentPage] = useState(0); // Current Page Number
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
@@ -15,7 +17,8 @@ function App() {
   // To Cache the result OR to use full-term search
   const fetchPokeSearch = useCallback(
     (e) => {
-      pokeSearchValue !== "" && setQueryParams(`/${pokeSearchValue}`);
+      //pokeSearchValue !== "" && setQueryParams(`/${pokeSearchValue}`);
+      history("/pokemon/" + pokeSearchValue);
     },
     [setQueryParams, pokeSearchValue, setCurrentPage]
   );
