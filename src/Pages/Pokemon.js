@@ -33,6 +33,12 @@ const Pokemon = () => {
           <h2>Pokemon Name: {pokeStat.name}</h2>
           <img src={pokeStat.sprites.front_default} />
 
+          <div class="types">
+            {pokeStat.types.map((type) => (
+              <div>{type.type.name}</div>
+            ))}
+          </div>
+
           <table class="table-fixed">
             <thead>
               <tr>
@@ -42,8 +48,36 @@ const Pokemon = () => {
             </thead>
             <tbody>
               <tr>
+                <td>Weight</td>
+                <td>{pokeStat.weight}</td>
+              </tr>
+              <tr>
+                <td>Height</td>
+                <td>{pokeStat.height}</td>
+              </tr>
+              <tr>
                 <td>Attack</td>
                 <td>{pokeStat.stats[4].base_stat}</td>
+              </tr>
+              <tr>
+                <td>Defence</td>
+                <td>{pokeStat.stats[3].base_stat}</td>
+              </tr>
+              <tr>
+                <td>Special Attack</td>
+                <td>{pokeStat.stats[2].base_stat}</td>
+              </tr>
+              <tr>
+                <td>Special Defence</td>
+                <td>{pokeStat.stats[1].base_stat}</td>
+              </tr>
+              <tr>
+                <td>Health Points (HP)</td>
+                <td>{pokeStat.stats[5].base_stat}</td>
+              </tr>
+              <tr>
+                <td>Speed</td>
+                <td>{pokeStat.stats[0].base_stat}</td>
               </tr>
             </tbody>
           </table>
