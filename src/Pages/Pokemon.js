@@ -7,6 +7,7 @@ const Pokemon = () => {
   let name = useParams(); // Retrieve the URL parameters
   const [pokeStat, setPokeStat] = useState(null); // Set Pokemon State
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
+  const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
 
   // Fetch pokemon
   const fetchPokemon = useCallback(() => {
@@ -33,6 +34,18 @@ const Pokemon = () => {
     setFav(fav.filter((item) => item !== name));
   }
 
+  // Add to Favourites as a Local Storage Object
+  function pokeCompare(name) {
+    // Check if Pokemon is already in Favourites
+    setCompare(compare.includes(name) ? [...compare] : [...compare, name]);
+  }
+
+  // Remove Pokemon from Favourites as a Local Storage Object
+  function pokeRemoveCompare(name) {
+    // Use Filter to remove Pokemon from Favourites
+    setCompare(compare.filter((item) => item !== name));
+  }
+
   return (
     <div className="poke-card">
       {pokeStat && (
@@ -54,6 +67,24 @@ const Pokemon = () => {
               onClick={() => pokeRemoveFavourite(pokeStat.name)}
             >
               Remove to favorite
+            </button>
+          )}
+
+          {!compare.includes(pokeStat.name) && (
+            <button
+              className="poke-comparison"
+              onClick={() => pokeCompare(pokeStat.name)}
+            >
+              Compare
+            </button>
+          )}
+
+          {compare.includes(pokeStat.name) && (
+            <button
+              className="poke-comparison"
+              onClick={() => pokeRemoveCompare(pokeStat.name)}
+            >
+              Uncompare
             </button>
           )}
 
