@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import PokeItem from "./Component/PokeItem";
 
 function App() {
   const [pokeList, setPokeList] = useState([]);
@@ -32,7 +33,7 @@ function App() {
       <h1>Pokemon List</h1>
       <ul className="results">
         {pokeList.map((pokemon) => (
-          <li key={pokemon.name}>{pokemon.name}</li>
+          <PokeItem key={pokemon.name} name={pokemon.name} />
         ))}
       </ul>
       {currentPage >= 1 && (

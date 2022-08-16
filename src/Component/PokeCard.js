@@ -5,8 +5,9 @@
 // https://pokeapi.co/api/v2/move/{id or name}/ - Pokemin Move Details
 // https://pokeapi.co/docs/v2#characteristics - Pokemin Characteristics
 // https://pokeapi.co/api/v2/ability/{id or name}/
+// https://pokeapi.co/api/v2/pokemon/venusaur/ - Pokemon Details
 
-const pokeCard = ({ name, characteristics }) => {
+const PokeCard = ({ name, characteristics }) => {
   return (
     <div className="poke-card">
       {name}
@@ -17,4 +18,4 @@ const pokeCard = ({ name, characteristics }) => {
   );
 };
 
-export default pokeCard;
+export default PokeCard;
