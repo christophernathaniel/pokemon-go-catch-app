@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 
 function App() {
   const [pokeList, setPokeList] = useState([]);
-  const [totalPages, setTotalpages] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0");
+  const [totalResults, setTotalResults] = useState(null);
 
   // Request to fetch Pokemon
   // useCallback to memorize callback function
@@ -15,27 +15,17 @@ function App() {
       .then((data) => {
         setPokeList(data.results);
         console.log(data);
-
-        if (totalPages === null) {
-          console.log(data.count);
-          console.log("hello");
-          setTotalpages(data.count);
+        if (totalResults === null) {
+          setTotalResults(data.count);
         }
       });
-  }, [totalPages, queryParams]); // Add Dependancies
+  }, [queryParams, totalResults]); // Add Dependancies
 
-  // On List Change fetch new Pokemon List
-  // Depricated for Removal: Redundent Function
-  // useEffect(() => {
-  //   fetchPokemon();
-  // }, [fetchPokemon]); // Only Target new Pokemon List on List Change
-
-  // On Page Value Change query selector
   useEffect(() => {
     let resultOffset = currentPage * 20;
     setQueryParams("?limit=20&offset=" + resultOffset);
     fetchPokemon();
-  }, [currentPage, fetchPokemon, queryParams]);
+  }, [fetchPokemon, currentPage]); // Add Dependancies
 
   return (
     <div className="App">
@@ -45,7 +35,15 @@ function App() {
           <li key={pokemon.name}>{pokemon.name}</li>
         ))}
       </ul>
-      {currentPage < totalPages && (
+      {currentPage >= 1 && (
+        <button
+          className="show-less"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Show Less
+        </button>
+      )}
+      {currentPage < totalResults && (
         <button
           className="show-more"
           onClick={() => setCurrentPage(currentPage + 1)}
