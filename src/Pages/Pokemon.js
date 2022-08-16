@@ -1,40 +1,36 @@
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
+import { useLocalStorage } from "../Functions/useLocalStorage";
+// https://blog.logrocket.com/using-localstorage-react-hooks/ - LocalStorage Hooks
 
 const Pokemon = () => {
-  let name = useParams();
+  let name = useParams(); // Retrieve the URL parameters
+  const [pokeStat, setPokeStat] = useState(null); // Set Pokemon State
+  const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
 
-  let defaultPokeState = null;
-
-  const [pokeStat, setPokeStat] = useState(defaultPokeState);
-
-  // get Favourites from Local Storage
-  const [fav, setFav] = useState(() => {
-    const getFav = localStorage.getItem("favourites");
-    console.log(getFav);
-    return getFav ? JSON.parse(getFav) : [];
-  });
-
+  // Fetch pokemon
   const fetchPokemon = useCallback(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/" + name.name)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         setPokeStat(data);
       });
-  }, []); // Add Dependancies
+  }, [name.name]); // Add Dependancies
 
   useEffect(() => {
     fetchPokemon();
   }, [fetchPokemon]); // Add Dependancies
 
+  // Add to Favourites as a Local Storage Object
   function pokeFavourite(name) {
-    console.log("helo");
-    localStorage.setItem(
-      "favourites",
-      JSON.stringify(fav.includes(name) ? [...fav] : [...fav, name])
-    );
+    // Check if Pokemon is already in Favourites
+    setFav(fav.includes(name) ? [...fav] : [...fav, name]);
+  }
+
+  // Remove Pokemon from Favourites as a Local Storage Object
+  function pokeRemoveFavourite(name) {
+    // Use Filter to remove Pokemon from Favourites
+    setFav(fav.filter((item) => item !== name));
   }
 
   return (
@@ -42,13 +38,24 @@ const Pokemon = () => {
       {pokeStat && (
         <>
           <h2>Pokemon Name: {pokeStat.name}</h2>
-          <img src={pokeStat.sprites.front_default} />
-          <button
-            className="poke-favorite"
-            onClick={() => pokeFavourite(pokeStat.name)}
-          >
-            Add to favorite
-          </button>
+          <img alt={pokeStat.name} src={pokeStat.sprites.front_default} />
+          {!fav.includes(pokeStat.name) && (
+            <button
+              className="poke-favorite"
+              onClick={() => pokeFavourite(pokeStat.name)}
+            >
+              Add to favorite
+            </button>
+          )}
+
+          {fav.includes(pokeStat.name) && (
+            <button
+              className="poke-favorite"
+              onClick={() => pokeRemoveFavourite(pokeStat.name)}
+            >
+              Remove to favorite
+            </button>
+          )}
 
           <div className="types">
             {pokeStat.types.map((type) => (
