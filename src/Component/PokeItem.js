@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PokeItem = ({ name }) => {
   return (
     <li className="poke-item">
-      <Link to="/netflix">{name}</Link>
+      <Link to={"/pokemon/" + name}>{name}</Link>
     </li>
   );
 };
