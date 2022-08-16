@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PokeItem from "./Component/PokeItem";
 import PokeSearch from "./Component/PokeSearch";
 import Pagination from "./Atom/Pagination";
+import pokedex from "./pokedex.json";
 
 function App() {
   const history = useNavigate();
@@ -12,6 +13,7 @@ function App() {
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
   const [totalResults, setTotalResults] = useState(null); // Total Result Count
   const [pokeSearchValue, setPokeSearchValue] = useState(""); // Search Value
+  const [pokeSearchList, setPokeSearchList] = useState([]); // Current Pokemon Character Lis
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
@@ -20,7 +22,7 @@ function App() {
       //pokeSearchValue !== "" && setQueryParams(`/${pokeSearchValue}`);
       history("/pokemon/" + pokeSearchValue);
     },
-    [setQueryParams, pokeSearchValue, setCurrentPage]
+    [pokeSearchValue]
   );
 
   // Set Rules for Input Change
@@ -34,6 +36,12 @@ function App() {
     if (inputValue !== "") {
       setCurrentPage(null);
     }
+
+    setPokeSearchList(
+      pokedex.filter((item) => {
+        return item.toLowerCase().includes(inputValue);
+      })
+    );
   };
 
   // Request to fetch Pokemon
@@ -70,6 +78,10 @@ function App() {
         {!pokeSearchValue &&
           pokeList.map((pokemon) => (
             <PokeItem key={pokemon.name} name={pokemon.name} />
+          ))}
+        {pokeSearchValue &&
+          pokeSearchList.map((pokemon) => (
+            <PokeItem key={pokemon} name={pokemon} />
           ))}
       </ul>
       {currentPage !== null && (
