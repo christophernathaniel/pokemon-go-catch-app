@@ -6,14 +6,14 @@ import Pagination from "./Atom/Pagination";
 import pokedex from "./pokedex.json";
 
 function App() {
-  const history = useNavigate();
+  const history = useNavigate(); // Used to navigate to individual Project
 
   const [pokeList, setPokeList] = useState([]); // Current Pokemon Character List
   const [currentPage, setCurrentPage] = useState(0); // Current Page Number
   const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
   const [totalResults, setTotalResults] = useState(null); // Total Result Count
   const [pokeSearchValue, setPokeSearchValue] = useState(""); // Search Value
-  const [pokeSearchList, setPokeSearchList] = useState([]); // Current Pokemon Character Lis
+  const [pokeSearchList, setPokeSearchList] = useState([]); // Current Pokemon Character List
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search

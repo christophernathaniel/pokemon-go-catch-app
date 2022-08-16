@@ -8,6 +8,13 @@ const Pokemon = () => {
 
   const [pokeStat, setPokeStat] = useState(defaultPokeState);
 
+  // get Favourites from Local Storage
+  const [fav, setFav] = useState(() => {
+    const getFav = localStorage.getItem("favourites");
+    console.log(getFav);
+    return getFav ? JSON.parse(getFav) : [];
+  });
+
   const fetchPokemon = useCallback(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/" + name.name)
       .then((res) => res.json())
@@ -22,12 +29,26 @@ const Pokemon = () => {
     fetchPokemon();
   }, [fetchPokemon]); // Add Dependancies
 
+  function pokeFavourite(name) {
+    console.log("helo");
+    localStorage.setItem(
+      "favourites",
+      JSON.stringify(fav.includes(name) ? [...fav] : [...fav, name])
+    );
+  }
+
   return (
     <div className="poke-card">
       {pokeStat && (
         <>
           <h2>Pokemon Name: {pokeStat.name}</h2>
           <img src={pokeStat.sprites.front_default} />
+          <button
+            className="poke-favorite"
+            onClick={() => pokeFavourite(pokeStat.name)}
+          >
+            Add to favorite
+          </button>
 
           <div className="types">
             {pokeStat.types.map((type) => (
