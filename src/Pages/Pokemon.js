@@ -16,6 +16,7 @@ const Pokemon = () => {
     specialAttack: 0,
     weight: 0,
     types: [],
+    sprites: [],
   };
 
   const [pokeStat, setPokeStat] = useState(defaultPokeState);
@@ -26,9 +27,9 @@ const Pokemon = () => {
       .then((data) => {
         console.log(data);
 
-        setPokeStat = [...pokeStat, data.sprites.front_default];
+        setPokeStat(data);
       });
-  }); // Add Dependancies
+  }, []); // Add Dependancies
 
   useEffect(() => {
     fetchPokemon();
@@ -36,9 +37,28 @@ const Pokemon = () => {
 
   return (
     <div className="poke-card">
+      {/* {console.log(pokeStat.sprites.front_default)}
       <h1>Pokemon</h1>
-      <h2>{name.name}</h2>
-      <img src="{pokeStat.image}" />
+      <h2>{pokeStat.name}</h2>
+      <img src={pokeStat.sprites.front_default} /> */}
+
+      <h2>{pokeStat.name}</h2>
+      <img src={pokeStat.sprites.front_default} />
+
+      <table class="table-fixed">
+        <thead>
+          <tr>
+            <th>Base</th>
+            <th>Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
