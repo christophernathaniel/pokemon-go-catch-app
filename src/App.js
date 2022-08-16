@@ -4,15 +4,20 @@ import PokeSearch from "./Component/PokeSearch";
 import Pagination from "./Atom/Pagination";
 
 function App() {
-  const [pokeList, setPokeList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [queryParams, setQueryParams] = useState("?limit=20&offset=0");
-  const [totalResults, setTotalResults] = useState(null);
-  const [pokeSearchValue, onPokeSearchValue] = useState("");
+  const [pokeList, setPokeList] = useState([]); // Current Pokemon Character List
+  const [currentPage, setCurrentPage] = useState(0); // Current Page Number
+  const [queryParams, setQueryParams] = useState("?limit=20&offset=0"); // Query Params
+  const [totalResults, setTotalResults] = useState(null); // Total Result Count
+  const [pokeSearchValue, onPokeSearchValue] = useState(""); // Search Value
 
-  const fetchPokeSearch = useCallback((e) => {
-    console.log("retrieved");
-  }, []);
+  // Note: the API doesn't return a search API. We have two options.
+  // To Cache the result OR to use full-term search
+  const fetchPokeSearch = useCallback(
+    (e) => {
+      pokeSearchValue !== "" && setQueryParams(`/${pokeSearchValue}`);
+    },
+    [setQueryParams, currentPage, pokeSearchValue]
+  );
 
   // useEffect(() => {
   //   fetchPokeSearch();
@@ -48,9 +53,10 @@ function App() {
           onPokeSearchValue={onPokeSearchValue}
           searchEvent={fetchPokeSearch}
         />
-        {pokeList.map((pokemon) => (
-          <PokeItem key={pokemon.name} name={pokemon.name} />
-        ))}
+        {!pokeSearchValue &&
+          pokeList.map((pokemon) => (
+            <PokeItem key={pokemon.name} name={pokemon.name} />
+          ))}
       </ul>
       <Pagination
         totalResults={totalResults}
