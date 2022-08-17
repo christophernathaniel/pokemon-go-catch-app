@@ -29,7 +29,8 @@
     font-weight: 600;
   }
 
-  .type-list {
+  .type-list,
+  .ability-list {
     display: flex;
     margin: 10px 0;
     gap: 5px;
@@ -112,6 +113,33 @@
 
     .water {
       background-color: #1552e4;
+    }
+  }
+
+  .poke-comparison {
+    width: 100%;
+    border-radius: 10px;
+
+    &.inactive {
+    }
+  }
+
+  .statistic-icon {
+    display: flex;
+    gap: 20px;
+  }
+
+  .pokemon-stats {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    table {
+      width: 100%;
+    }
+
+    td:nth-child(2) {
+      font-weight: 600;
+      text-align: right;
     }
   }
 }

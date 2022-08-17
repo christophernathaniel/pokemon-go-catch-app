@@ -8,6 +8,17 @@
 // https://pokeapi.co/api/v2/pokemon/venusaur/ - Pokemon Details
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FaWeightHanging } from "react-icons/fa";
+import { TbLineHeight } from "react-icons/tb";
+import {
+  GiBroadsword,
+  GiGooeySword,
+  GiZebraShield,
+  GiHealthPotion,
+  GiSpeedometer,
+  GiBodyHeight,
+} from "react-icons/gi";
+import { BsFillShieldFill } from "react-icons/bs";
 import "./PokeCard.scss";
 import { useState, useEffect } from "react";
 
@@ -52,6 +63,8 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
     // Use Filter to remove Pokemon from Favourites
     setCompare(compare.filter((item) => item.name !== characteristic.name));
   }
+
+  console.log(characteristic);
 
   return (
     <div className="poke-card">
@@ -122,55 +135,100 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
           </span>
         </div>
 
-        <table className="table-fixed">
-          <thead>
-            <tr>
-              <th>Base</th>
-              <th>Stats</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Weight</td>
-              <td>{characteristic.weight}</td>
-            </tr>
-            <tr>
-              <td>Height</td>
-              <td>{characteristic.height}</td>
-            </tr>
-            <tr>
-              <td>Attack</td>
-              <td>{characteristic.stats[4].base_stat}</td>
-            </tr>
-            <tr>
-              <td>Defence</td>
-              <td>{characteristic.stats[3].base_stat}</td>
-            </tr>
-            <tr>
-              <td>Special Attack</td>
-              <td>{characteristic.stats[2].base_stat}</td>
-            </tr>
-            <tr>
-              <td>Special Defence</td>
-              <td>{characteristic.stats[1].base_stat}</td>
-            </tr>
-            <tr>
-              <td>Health Points (HP)</td>
-              <td>{characteristic.stats[5].base_stat}</td>
-            </tr>
-            <tr>
-              <td>Speed</td>
-              <td>{characteristic.stats[0].base_stat}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="pokemon-stats">
+          <table className="table-fixed">
+            <tbody>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <FaWeightHanging /> Weight
+                  </span>
+                </td>
+                <td>{characteristic.weight}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiBodyHeight />
+                    Height
+                  </span>
+                </td>
+                <td>{characteristic.height}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiBroadsword />
+                    Attack
+                  </span>
+                </td>
+                <td>{characteristic.stats[4].base_stat}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <BsFillShieldFill />
+                    Defence
+                  </span>
+                </td>
+                <td>{characteristic.stats[3].base_stat}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiGooeySword />
+                    Special Attack
+                  </span>
+                </td>
+                <td>{characteristic.stats[2].base_stat}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiZebraShield />
+                    Special Defence
+                  </span>
+                </td>
+                <td>{characteristic.stats[1].base_stat}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiHealthPotion />
+                    Health Points (HP)
+                  </span>
+                </td>
+                <td>{characteristic.stats[5].base_stat}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="statistic-icon">
+                    <GiSpeedometer />
+                    Speed
+                  </span>
+                </td>
+                <td>{characteristic.stats[0].base_stat}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="abilties">
+          <ul className="ability-list">
+            {characteristic.abilities.map((ability, i) => (
+              <li key={i} className={ability.ability.name}>
+                {ability.ability.name}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div clasName="comparison-options">
           {!compare.some((item) => {
             return item.name === characteristic.name;
           }) && (
             <button
-              className="poke-comparison ui-button "
+              className="poke-comparison ui-button inactive"
               onClick={() => pokeCompare(characteristic)}
             >
               Compare
@@ -181,7 +239,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
             return item.name === characteristic.name;
           }) && (
             <button
-              className="poke-comparison ui-button "
+              className="poke-comparison ui-button active"
               onClick={() => pokeRemoveCompare(characteristic)}
             >
               Uncompare

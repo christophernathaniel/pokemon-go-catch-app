@@ -38,9 +38,10 @@ function PokeApp() {
       setCurrentPage(null);
     }
 
+    // Filter Pokemon List and set both comparison selectors to lowercase
     setPokeSearchList(
       pokedex.filter((item) => {
-        return item.toLowerCase().includes(inputValue);
+        return item.toLowerCase().includes(inputValue.toLowerCase());
       })
     );
   };
