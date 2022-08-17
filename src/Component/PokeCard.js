@@ -31,15 +31,23 @@ const PokeCard = ({ characteristic }) => {
   }
 
   // Add to Favourites as a Local Storage Object
-  function pokeCompare(name) {
-    // Check if Pokemon is already in Favourites
-    setCompare(compare.includes(name) ? [...compare] : [...compare, name]);
+  function pokeCompare(characteristic) {
+    // Refactored to allow the entire character to be added to local storage
+    // Size of Local Storage Limit is 5mb. Each Pokemon is 25kb. Approximate of 200 Pokemon.
+    compare.some((item) => {
+      return item.name === characteristic.name;
+    })
+      ? console.log("already added")
+      : setCompare([
+          ...compare,
+          { name: characteristic.name, char: characteristic },
+        ]);
   }
 
   // Remove Pokemon from Favourites as a Local Storage Object
-  function pokeRemoveCompare(name) {
+  function pokeRemoveCompare(characteristic) {
     // Use Filter to remove Pokemon from Favourites
-    setCompare(compare.filter((item) => item !== name));
+    setCompare(compare.filter((item) => item.name !== characteristic.name));
   }
 
   return (
@@ -50,8 +58,9 @@ const PokeCard = ({ characteristic }) => {
           alt={characteristic.name}
           src={characteristic.sprites.front_default}
         />
+
         {!fav.some((item) => {
-          return true;
+          return item.name === characteristic.name;
         }) && (
           <button
             className="poke-favorite"
@@ -62,7 +71,7 @@ const PokeCard = ({ characteristic }) => {
         )}
 
         {fav.some((item) => {
-          return true;
+          return item.name === characteristic.name;
         }) && (
           <button
             className="poke-favorite"
@@ -72,19 +81,23 @@ const PokeCard = ({ characteristic }) => {
           </button>
         )}
 
-        {!compare.includes(characteristic.name) && (
+        {!compare.some((item) => {
+          return item.name === characteristic.name;
+        }) && (
           <button
             className="poke-comparison"
-            onClick={() => pokeCompare(characteristic.name)}
+            onClick={() => pokeCompare(characteristic)}
           >
             Compare
           </button>
         )}
 
-        {compare.includes(characteristic.name) && (
+        {compare.some((item) => {
+          return item.name === characteristic.name;
+        }) && (
           <button
             className="poke-comparison"
-            onClick={() => pokeRemoveCompare(characteristic.name)}
+            onClick={() => pokeRemoveCompare(characteristic)}
           >
             Uncompare
           </button>
