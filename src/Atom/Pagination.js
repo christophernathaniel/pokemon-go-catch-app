@@ -9,7 +9,8 @@ const Pagination = ({ currentPage, totalResults, setCurrentPage }) => {
           Show Less
         </button>
       )}
-      {currentPage < totalResults && (
+      {currentPage >= 1 && <div className="pagi-counter">{currentPage}</div>}
+      {currentPage + 1 < totalResults / 20 && (
         <button
           className="show-more"
           onClick={() => setCurrentPage(currentPage + 1)}

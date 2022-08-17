@@ -1,12 +1,15 @@
 .poke-compare {
+  background-color: #fd6648;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 15px 20px;
+  position: relative;
+
   .stat,
   .statistic-icon {
     display: flex;
     gap: 10px;
     align-items: center;
-  }
-  .stat-maintain {
-    color: green;
   }
 
   .stat-increase {
@@ -14,5 +17,26 @@
   }
 
   .stat-decrease {
+    opacity: 0.4;
+  }
+
+  .poke-favorite {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .charactaristic-name {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--style-yellow);
+  }
+
+  .ui-button {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
   }
 }

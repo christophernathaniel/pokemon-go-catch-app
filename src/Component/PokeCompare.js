@@ -1,5 +1,4 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { FaWeightHanging } from "react-icons/fa";
 
 import {
   GiBroadsword,
@@ -7,7 +6,6 @@ import {
   GiZebraShield,
   GiHealthPotion,
   GiSpeedometer,
-  GiBodyHeight,
 } from "react-icons/gi";
 import { BsFillShieldFill } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
@@ -39,31 +37,20 @@ const PokeCompare = ({
     setFav(fav.filter((item) => item.name !== characteristic.name));
   }
 
-  // Add to Favourites as a Local Storage Object
-  function pokeCompare(characteristic) {
-    // Refactored to allow the entire character to be added to local storage
-    // Size of Local Storage Limit is 5mb. Each Pokemon is 25kb. Approximate of 200 Pokemon.
-    compare.some((item) => {
-      return item.name === characteristic.name;
-    })
-      ? console.log("already added")
-      : setCompare([
-          ...compare,
-          { name: characteristic.name, char: characteristic },
-        ]);
-  }
-
   // Remove Pokemon from Favourites as a Local Storage Object
   function pokeRemoveCompare(characteristic) {
     // Use Filter to remove Pokemon from Favourites
     setCompare(compare.filter((item) => item.name !== characteristic.name));
   }
 
+  // Compare Stats with Value and Average
   function StatComparison({ value, average }) {
+    // If Value and Averages are the same
     if (Number(value) === Number(average)) {
       return <div class="stat-maintain">{value}</div>;
     }
 
+    // If Value is more than Average (+++)
     if (Number(value) > Number(average)) {
       return (
         <div class="stat stat-increase">
@@ -73,6 +60,7 @@ const PokeCompare = ({
       );
     }
 
+    // If Value is less than Average (---)
     if (Number(value) < Number(average)) {
       return (
         <div class="stat stat-decrease">
@@ -215,17 +203,6 @@ const PokeCompare = ({
       </div>
 
       <div clasName="comparison-options">
-        {!compare.some((item) => {
-          return item.name === characteristic.name;
-        }) && (
-          <button
-            className="poke-comparison ui-button inactive"
-            onClick={() => pokeCompare(characteristic)}
-          >
-            Compare
-          </button>
-        )}
-
         {compare.some((item) => {
           return item.name === characteristic.name;
         }) && (

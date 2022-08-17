@@ -1,3 +1,31 @@
 .poke-app-results {
   padding-top: 20px;
+
+  &.ui-scrollable {
+    max-height: 80%;
+  }
+}
+
+.pagination {
+  position: absolute;
+  bottom: 80px;
+  display: flex;
+  width: 100%;
+  left: 0px;
+  background-color: var(--app-black);
+  color: var(--app-white);
+
+  button,
+  .pagi-counter {
+    padding-bottom: 40px;
+    padding-top: 20px;
+  }
+
+  .show-less {
+    width: 100%;
+  }
+
+  .show-more {
+    width: 100%;
+  }
 }

@@ -6,19 +6,17 @@ const Favourite = ({ fav, setFav, compare, setCompare }) => {
   // Option to Remove pokemon from Favourites
 
   return (
-    <div>
-      <div className="pokemon">
-        {fav.map((pokeStat) => (
-          <PokeFav
-            key={pokeStat.name}
-            characteristic={pokeStat.char}
-            fav={fav}
-            setFav={setFav}
-            compare={compare}
-            setCompare={setCompare}
-          />
-        ))}
-      </div>
+    <div className="pokemon ui-scrollable">
+      {fav.map((pokeStat) => (
+        <PokeFav
+          key={pokeStat.name}
+          characteristic={pokeStat.char}
+          fav={fav}
+          setFav={setFav}
+          compare={compare}
+          setCompare={setCompare}
+        />
+      ))}
     </div>
   );
 };
