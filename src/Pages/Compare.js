@@ -64,11 +64,6 @@ const Compare = ({ fav, setFav, compare, setCompare }) => {
     );
   }, [compare, setCompare]);
 
-  useEffect(() => {
-    // Check Comparison
-    console.log(average);
-  }, [average]);
-
   return (
     <div className="pokemon ui-scrollable">
       {compare.map((pokeStat) => (

@@ -48,8 +48,6 @@ function PokeApp() {
     );
   };
 
-  console.log(pokeList);
-
   // Build the Options for Generation Filter List
   function GenerationFilterList() {
     return (
@@ -71,7 +69,6 @@ function PokeApp() {
       fetch("https://pokeapi.co/api/v2/generation/" + pokeGenerationFilter)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.pokemon_species);
           setGenerationList(data.pokemon_species);
           if (totalResults === null) {
             setTotalResults(data.count);
