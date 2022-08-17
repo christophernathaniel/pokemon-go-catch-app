@@ -1,4 +1,4 @@
-import { useLocalStorage } from "../Functions/useLocalStorage";
+import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const Favourite = () => {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hook

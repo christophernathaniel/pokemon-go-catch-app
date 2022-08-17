@@ -1,4 +1,4 @@
-import { useLocalStorage } from "../Functions/useLocalStorage";
+import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const Compare = () => {
   const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks

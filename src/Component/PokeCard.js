@@ -7,7 +7,7 @@
 // https://pokeapi.co/api/v2/ability/{id or name}/
 // https://pokeapi.co/api/v2/pokemon/venusaur/ - Pokemon Details
 
-import { useLocalStorage } from "../Functions/useLocalStorage";
+import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const PokeCard = ({ characteristic }) => {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
