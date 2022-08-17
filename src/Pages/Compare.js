@@ -1,8 +1,7 @@
 import { useLocalStorage } from "../Hooks/useLocalStorage";
+import PokeCard from "../Component/PokeCard";
 
-const Compare = () => {
-  const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
-
+const Compare = ({ fav, setFav, compare, setCompare }) => {
   // Collect Pokepon
   // Request Values
   // Create an AVERAGE from all values
@@ -12,9 +11,20 @@ const Compare = () => {
   // Potentially Reorder from Compare
 
   return (
-    <>
-      <h1>Favourite</h1>
-    </>
+    <div>
+      <div className="pokemon">
+        {compare.map((pokeStat) => (
+          <PokeCard
+            key={pokeStat.name}
+            characteristic={pokeStat.char}
+            fav={fav}
+            setFav={setFav}
+            compare={compare}
+            setCompare={setCompare}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

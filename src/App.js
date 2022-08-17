@@ -44,7 +44,14 @@ function App() {
         />
         <Route
           path="/compare"
-          element={<Compare compare={compare} setCompare={setCompare} />}
+          element={
+            <Compare
+              fav={fav}
+              setFav={setFav}
+              compare={compare}
+              setCompare={setCompare}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>
