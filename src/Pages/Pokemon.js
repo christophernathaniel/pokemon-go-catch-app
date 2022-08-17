@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PokeCard from "../Component/PokeCard";
 // https://blog.logrocket.com/using-localstorage-react-hooks/ - LocalStorage Hooks
+import { BiChevronLeft } from "react-icons/bi";
 
 const Pokemon = ({ fav, setFav, compare, setCompare }) => {
   const navigate = useNavigate(); // Used to navigate to individual Project
@@ -28,7 +29,7 @@ const Pokemon = ({ fav, setFav, compare, setCompare }) => {
   return (
     <>
       <div className="back" onClick={() => navigate("/")}>
-        Back
+        <BiChevronLeft className="ui-back-button" />
       </div>
       <div className="pokemon">
         {pokeStat && (

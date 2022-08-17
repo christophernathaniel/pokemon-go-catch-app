@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700;900&display=swap");
+:root {
+  --app-background: #f1f1f1;
+  --app-white: #ffffff;
+  --app-color: #333;
+
+  --style-green: #43cd9c;
+  --style-red: #ff3002;
+  --style-yellow: #ffe368;
+
+  --app-margin: 20px;
+}
+
+.app-c {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--app-background);
+  color: var(--app-color);
+  font-family: "Roboto", sans-serif;
+}
+
+.mobile-interface-c {
+  max-width: 380px;
+  max-height: 805px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--style-red);
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.ui-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-size: 12px;
+  gap: 40px;
+  bottom: 0px;
+  background-color: var(--app-white);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding-bottom: 10px;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  svg {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+}
+
+.ui-header-navigation {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: 600;
+  color: var(--app-white);
+}
+
+.ui-body {
+  margin: 0 var(--app-margin) 0 var(--app-margin);
+  overflow: scroll;
+  max-height: 100%;
+  padding-bottom: 140px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 60px;
+  letter-spacing: -5px;
+  color: var(--style-yellow);
+  text-align: center;
+}
+
+.ui-back-button {
+  font-size: 30px;
+  color: var(--app-white);
+  position: absolute;
+  top: 40px;
+  left: 30px;
+}

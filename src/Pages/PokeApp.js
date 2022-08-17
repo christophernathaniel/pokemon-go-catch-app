@@ -4,6 +4,7 @@ import PokeItem from "../Component/PokeItem";
 import PokeSearch from "../Component/PokeSearch";
 import Pagination from "../Atom/Pagination";
 import pokedex from "../pokedex.json";
+import "./PokeApp.scss";
 
 function PokeApp() {
   const navigate = useNavigate(); // Used to navigate to individual Project
