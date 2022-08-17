@@ -9,8 +9,13 @@
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import "./PokeCard.scss";
+import { useState, useEffect } from "react";
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
+  const [spriteKey, setSpriteKey] = useState(
+    characteristic.sprites["front_default"]
+  );
+
   // Add to Favourites as a Local Storage Object
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
@@ -52,59 +57,69 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
     <div className="poke-card">
       <>
         <h2 className="charactaristic-name">{characteristic.name}</h2>
-        <img
-          alt={characteristic.name}
-          src={characteristic.sprites.front_default}
-        />
+        <div className="poke-card-keyinformation">
+          <div className="types">
+            <ul className="type-list">
+              {characteristic.types.map((type, i) => (
+                <li key={i} className={type.type.name}>
+                  {type.type.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            {fav.some((item) => {
+              return item.name === characteristic.name;
+            }) && (
+              <button
+                className="poke-favorite"
+                onClick={() => pokeRemoveFavourite(characteristic)}
+              >
+                <AiFillHeart />
+              </button>
+            )}
 
-        {!fav.some((item) => {
-          return item.name === characteristic.name;
-        }) && (
-          <button
-            className="poke-favorite"
-            onClick={() => pokeFavourite(characteristic)}
+            {!fav.some((item) => {
+              return item.name === characteristic.name;
+            }) && (
+              <button
+                className="poke-favorite"
+                onClick={() => pokeFavourite(characteristic)}
+              >
+                <AiOutlineHeart />
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="characteristic-image">
+          <img alt={characteristic.name} src={spriteKey} />
+        </div>
+        <div class="pokemon-view-options">
+          <span
+            className="sprite-front"
+            onClick={() => {
+              setSpriteKey(characteristic.sprites["front_default"]);
+            }}
           >
-            <AiOutlineHeart />
-          </button>
-        )}
-
-        {fav.some((item) => {
-          return item.name === characteristic.name;
-        }) && (
-          <button
-            className="poke-favorite"
-            onClick={() => pokeRemoveFavourite(characteristic)}
+            Front
+          </span>
+          <span
+            className="sprite-back"
+            onClick={() => {
+              setSpriteKey(characteristic.sprites["back_default"]);
+            }}
           >
-            <AiFillHeart />
-          </button>
-        )}
-
-        {!compare.some((item) => {
-          return item.name === characteristic.name;
-        }) && (
-          <button
-            className="poke-comparison ui-button "
-            onClick={() => pokeCompare(characteristic)}
+            Back
+          </span>
+          <span
+            className="sprite-shiny"
+            onClick={() => {
+              setSpriteKey(characteristic.sprites["front_shiny"]);
+            }}
           >
-            Compare
-          </button>
-        )}
-
-        {compare.some((item) => {
-          return item.name === characteristic.name;
-        }) && (
-          <button
-            className="poke-comparison ui-button "
-            onClick={() => pokeRemoveCompare(characteristic)}
-          >
-            Uncompare
-          </button>
-        )}
-
-        <div className="types">
-          {characteristic.types.map((type) => (
-            <div key={type.slot}>{type.type.name}</div>
-          ))}
+            Shiny
+          </span>
         </div>
 
         <table className="table-fixed">
@@ -149,6 +164,30 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
             </tr>
           </tbody>
         </table>
+
+        <div clasName="comparison-options">
+          {!compare.some((item) => {
+            return item.name === characteristic.name;
+          }) && (
+            <button
+              className="poke-comparison ui-button "
+              onClick={() => pokeCompare(characteristic)}
+            >
+              Compare
+            </button>
+          )}
+
+          {compare.some((item) => {
+            return item.name === characteristic.name;
+          }) && (
+            <button
+              className="poke-comparison ui-button "
+              onClick={() => pokeRemoveCompare(characteristic)}
+            >
+              Uncompare
+            </button>
+          )}
+        </div>
       </>
     </div>
   );
