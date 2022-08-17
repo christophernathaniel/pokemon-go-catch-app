@@ -106,7 +106,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
         <div className="characteristic-image">
           <img alt={characteristic.name} src={spriteKey} />
         </div>
-        <div class="pokemon-view-options">
+        <div className="pokemon-view-options">
           <span
             className="sprite-front"
             onClick={() => {
@@ -133,12 +133,12 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
           </span>
         </div>
 
-        <div class="pokemon-stats">
+        <div className="pokemon-stats">
           <table className="table-fixed">
             <tbody>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <FaWeightHanging /> Weight
                   </span>
                 </td>
@@ -146,7 +146,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiBodyHeight />
                     Height
                   </span>
@@ -155,7 +155,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiBroadsword />
                     Attack
                   </span>
@@ -164,7 +164,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <BsFillShieldFill />
                     Defence
                   </span>
@@ -173,7 +173,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiGooeySword />
                     Special Attack
                   </span>
@@ -182,7 +182,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiZebraShield />
                     Special Defence
                   </span>
@@ -191,7 +191,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiHealthPotion />
                     Health Points (HP)
                   </span>
@@ -200,7 +200,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
               </tr>
               <tr>
                 <td>
-                  <span class="statistic-icon">
+                  <span className="statistic-icon">
                     <GiSpeedometer />
                     Speed
                   </span>

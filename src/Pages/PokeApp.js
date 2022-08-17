@@ -15,6 +15,8 @@ function PokeApp() {
   const [totalResults, setTotalResults] = useState(null); // Total Result Count
   const [pokeSearchValue, setPokeSearchValue] = useState(""); // Search Value
   const [pokeSearchList, setPokeSearchList] = useState([]); // Current Pokemon Character List
+  const [pokeGenerationFilter, setPokeGenerationFilter] = useState(null); // Current Generation Filter
+  const [generationList, setGenerationList] = useState([]); // Current Generation List
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
@@ -46,6 +48,42 @@ function PokeApp() {
     );
   };
 
+  console.log(pokeList);
+
+  // Build the Options for Generation Filter List
+  function GenerationFilterList() {
+    return (
+      <ul>
+        <li onClick={() => setPokeGenerationFilter(null)}>All</li>
+        <li onClick={() => setPokeGenerationFilter(2)}>2</li>
+        <li onClick={() => setPokeGenerationFilter(3)}>3</li>
+        <li onClick={() => setPokeGenerationFilter(4)}>4</li>
+        <li onClick={() => setPokeGenerationFilter(5)}>5</li>
+        <li onClick={() => setPokeGenerationFilter(6)}>6</li>
+        <li onClick={() => setPokeGenerationFilter(7)}>7</li>
+        <li onClick={() => setPokeGenerationFilter(8)}>8</li>
+      </ul>
+    );
+  }
+
+  useEffect(() => {
+    if (pokeGenerationFilter) {
+      fetch("https://pokeapi.co/api/v2/generation/" + pokeGenerationFilter)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.pokemon_species);
+          setGenerationList(data.pokemon_species);
+          if (totalResults === null) {
+            setTotalResults(data.count);
+          }
+        });
+    }
+  }, [pokeGenerationFilter]);
+
+  // pokedex.filter((item) => {
+  //   return item.toLowerCase().includes();
+  // });
+
   // Request to fetch Pokemon
   // useCallback to memorize callback function
   // Only run the request once
@@ -76,8 +114,10 @@ function PokeApp() {
         searchEvent={fetchPokeSearch}
         pokeInputChange={pokeInputChange}
       />
+      <GenerationFilterList setPokeGenerationFilter={setPokeGenerationFilter} />
       <ul className="results poke-app-results ui-scrollable">
         {!pokeSearchValue &&
+          !pokeGenerationFilter &&
           pokeList.map((pokemon) => (
             <PokeItem key={pokemon.name} name={pokemon.name} />
           ))}
@@ -85,8 +125,12 @@ function PokeApp() {
           pokeSearchList.map((pokemon) => (
             <PokeItem key={pokemon} name={pokemon} />
           ))}
+        {generationList &&
+          generationList.map((pokemon, i) => (
+            <PokeItem key={i} name={pokemon.name} />
+          ))}
       </ul>
-      {currentPage !== null && (
+      {currentPage !== null && !pokeGenerationFilter && (
         <Pagination
           totalResults={totalResults}
           currentPage={currentPage}

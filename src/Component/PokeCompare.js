@@ -47,13 +47,13 @@ const PokeCompare = ({
   function StatComparison({ value, average }) {
     // If Value and Averages are the same
     if (Number(value) === Number(average)) {
-      return <div class="stat-maintain">{value}</div>;
+      return <div className="stat-maintain">{value}</div>;
     }
 
     // If Value is more than Average (+++)
     if (Number(value) > Number(average)) {
       return (
-        <div class="stat stat-increase">
+        <div className="stat stat-increase">
           {value}
           <GoPlus />
         </div>
@@ -63,7 +63,7 @@ const PokeCompare = ({
     // If Value is less than Average (---)
     if (Number(value) < Number(average)) {
       return (
-        <div class="stat stat-decrease">
+        <div className="stat stat-decrease">
           {value}
           <HiMinus />
         </div>
@@ -107,12 +107,12 @@ const PokeCompare = ({
         />
       </div>
 
-      <div class="pokemon-stats">
+      <div className="pokemon-stats">
         <table className="table-fixed">
           <tbody>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <GiBroadsword />
                   Attack
                 </span>
@@ -126,7 +126,7 @@ const PokeCompare = ({
             </tr>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <BsFillShieldFill />
                   Defence
                 </span>
@@ -140,7 +140,7 @@ const PokeCompare = ({
             </tr>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <GiGooeySword />
                   Special Attack
                 </span>
@@ -155,7 +155,7 @@ const PokeCompare = ({
             </tr>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <GiZebraShield />
                   Special Defence
                 </span>
@@ -170,7 +170,7 @@ const PokeCompare = ({
             </tr>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <GiHealthPotion />
                   Health Points (HP)
                 </span>
@@ -185,7 +185,7 @@ const PokeCompare = ({
             </tr>
             <tr>
               <td>
-                <span class="statistic-icon">
+                <span className="statistic-icon">
                   <GiSpeedometer />
                   Speed
                 </span>
@@ -202,7 +202,7 @@ const PokeCompare = ({
         </table>
       </div>
 
-      <div clasName="comparison-options">
+      <div className="comparison-options">
         {compare.some((item) => {
           return item.name === characteristic.name;
         }) && (
