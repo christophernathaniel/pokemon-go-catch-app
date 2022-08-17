@@ -64,8 +64,6 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
     setCompare(compare.filter((item) => item.name !== characteristic.name));
   }
 
-  console.log(characteristic);
-
   return (
     <div className="poke-card">
       <>
