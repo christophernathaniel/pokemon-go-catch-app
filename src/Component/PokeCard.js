@@ -7,7 +7,8 @@
 // https://pokeapi.co/api/v2/ability/{id or name}/
 // https://pokeapi.co/api/v2/pokemon/venusaur/ - Pokemon Details
 
-import { useLocalStorage } from "../Hooks/useLocalStorage";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import "./PokeCard.scss";
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   // Add to Favourites as a Local Storage Object
@@ -50,7 +51,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   return (
     <div className="poke-card">
       <>
-        <h2>Pokemon Name: {characteristic.name}</h2>
+        <h2 className="charactaristic-name">{characteristic.name}</h2>
         <img
           alt={characteristic.name}
           src={characteristic.sprites.front_default}
@@ -63,7 +64,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
             className="poke-favorite"
             onClick={() => pokeFavourite(characteristic)}
           >
-            Add to favorite
+            <AiOutlineHeart />
           </button>
         )}
 
@@ -74,7 +75,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
             className="poke-favorite"
             onClick={() => pokeRemoveFavourite(characteristic)}
           >
-            Remove to favorite
+            <AiFillHeart />
           </button>
         )}
 

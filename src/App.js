@@ -33,6 +33,9 @@ function App() {
               >
                 <BiHeart />
                 Favourite
+                {fav.length >= 1 && (
+                  <span className="ui-navigation-count">{fav.length}</span>
+                )}
               </NavLink>
             </li>
             <li>
@@ -41,7 +44,10 @@ function App() {
                 to={"/compare"}
               >
                 <BiGitCompare />
-                Compare
+                Compare{" "}
+                {compare.length >= 1 && (
+                  <span className="ui-navigation-count">{compare.length}</span>
+                )}
               </NavLink>
             </li>
           </ul>

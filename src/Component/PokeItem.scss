@@ -6,4 +6,10 @@
   margin-bottom: 10px;
   border-radius: 20px;
   color: var(--app-white);
+  z-index: 0;
+
+  &:hover {
+    background-color: #f9d6a7;
+    color: #fd960e;
+  }
 }
