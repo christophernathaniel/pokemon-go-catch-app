@@ -67,15 +67,15 @@ function PokeApp() {
   }, [fetchPokemon, currentPage]); // Add Dependancies
 
   return (
-    <div className="App">
-      <h1>Pokemon List</h1>
-      <ul className="results">
-        <PokeSearch
-          pokeSearchValue={pokeSearchValue}
-          onPokeSearchValue={setPokeSearchValue}
-          searchEvent={fetchPokeSearch}
-          pokeInputChange={pokeInputChange}
-        />
+    <>
+      <h1>Pokedex</h1>
+      <PokeSearch
+        pokeSearchValue={pokeSearchValue}
+        onPokeSearchValue={setPokeSearchValue}
+        searchEvent={fetchPokeSearch}
+        pokeInputChange={pokeInputChange}
+      />
+      <ul className="results poke-app-results ui-scrollable">
         {!pokeSearchValue &&
           pokeList.map((pokemon) => (
             <PokeItem key={pokemon.name} name={pokemon.name} />
@@ -92,7 +92,7 @@ function PokeApp() {
           setCurrentPage={setCurrentPage}
         />
       )}
-    </div>
+    </>
   );
 }
 

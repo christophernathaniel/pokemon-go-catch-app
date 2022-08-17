@@ -32,7 +32,7 @@ const Pokemon = ({ fav, setFav, compare, setCompare }) => {
       <div className="back" onClick={() => navigate("/")}>
         <BiChevronLeft className="ui-back-button" />
       </div>
-      <div className="pokemon-page">
+      <div className="pokemon-page ">
         {pokeStat && (
           <PokeCard
             characteristic={pokeStat}
