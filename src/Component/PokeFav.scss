@@ -1,0 +1,39 @@
+.poke-fav {
+  display: flex;
+  background-color: #fd6648;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 15px 20px;
+  position: relative;
+
+  a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    height: 100%;
+    color: var(--app-white);
+  }
+
+  .characteristic-image {
+    width: 50px;
+  }
+
+  &:hover {
+    background-color: #f9d6a7;
+    color: #fd960e;
+  }
+
+  .charactaristic-name {
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+
+  .poke-favorite {
+    top: 25px;
+    right: 30px;
+    position: absolute;
+  }
+}

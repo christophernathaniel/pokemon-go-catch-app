@@ -1,5 +1,5 @@
 import { useLocalStorage } from "../Hooks/useLocalStorage";
-import PokeCard from "../Component/PokeCard";
+import PokeFav from "../Component/PokeFav";
 
 const Favourite = ({ fav, setFav, compare, setCompare }) => {
   // Collect Pokemon
@@ -9,7 +9,7 @@ const Favourite = ({ fav, setFav, compare, setCompare }) => {
     <div>
       <div className="pokemon">
         {fav.map((pokeStat) => (
-          <PokeCard
+          <PokeFav
             key={pokeStat.name}
             characteristic={pokeStat.char}
             fav={fav}
