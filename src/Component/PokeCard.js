@@ -12,16 +12,22 @@ import { useLocalStorage } from "../Hooks/useLocalStorage";
 const PokeCard = ({ characteristic }) => {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
   const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
+
   // Add to Favourites as a Local Storage Object
-  function pokeFavourite(name) {
-    // Check if Pokemon is already in Favourites
-    setFav(fav.includes(name) ? [...fav] : [...fav, name]);
+  function pokeFavourite(characteristic) {
+    // Refactored to allow the entire character to be added to local storage
+    // Size of Local Storage Limit is 5mb. Each Pokemon is 25kb. Approximate of 200 Pokemon.
+    fav.some((item) => {
+      return item.name === characteristic.name;
+    })
+      ? console.log("already added")
+      : setFav([...fav, { name: characteristic.name, char: characteristic }]);
   }
 
   // Remove Pokemon from Favourites as a Local Storage Object
-  function pokeRemoveFavourite(name) {
+  function pokeRemoveFavourite(characteristic) {
     // Use Filter to remove Pokemon from Favourites
-    setFav(fav.filter((item) => item !== name));
+    setFav(fav.filter((item) => item.name !== characteristic.name));
   }
 
   // Add to Favourites as a Local Storage Object
@@ -44,19 +50,23 @@ const PokeCard = ({ characteristic }) => {
           alt={characteristic.name}
           src={characteristic.sprites.front_default}
         />
-        {!fav.includes(characteristic.name) && (
+        {!fav.some((item) => {
+          return true;
+        }) && (
           <button
             className="poke-favorite"
-            onClick={() => pokeFavourite(characteristic.name)}
+            onClick={() => pokeFavourite(characteristic)}
           >
             Add to favorite
           </button>
         )}
 
-        {fav.includes(characteristic.name) && (
+        {fav.some((item) => {
+          return true;
+        }) && (
           <button
             className="poke-favorite"
-            onClick={() => pokeRemoveFavourite(characteristic.name)}
+            onClick={() => pokeRemoveFavourite(characteristic)}
           >
             Remove to favorite
           </button>

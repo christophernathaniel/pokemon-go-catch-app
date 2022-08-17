@@ -1,4 +1,5 @@
 import { useLocalStorage } from "../Hooks/useLocalStorage";
+import PokeCard from "../Component/PokeCard";
 
 const Favourite = () => {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hook
@@ -8,7 +9,9 @@ const Favourite = () => {
 
   return (
     <>
-      <h1>Favourite</h1>
+      {/* <div className="pokemon">
+        {pokeStat && <PokeCard characteristic={pokeStat} />}
+      </div> */}
     </>
   );
 };
