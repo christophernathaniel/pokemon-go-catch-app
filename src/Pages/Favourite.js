@@ -1,18 +1,25 @@
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 import PokeCard from "../Component/PokeCard";
 
-const Favourite = () => {
-  const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hook
-
+const Favourite = ({ fav, setFav, compare, setCompare }) => {
   // Collect Pokemon
   // Option to Remove pokemon from Favourites
 
   return (
-    <>
-      {/* <div className="pokemon">
-        {pokeStat && <PokeCard characteristic={pokeStat} />}
-      </div> */}
-    </>
+    <div>
+      <div className="pokemon">
+        {fav.map((pokeStat) => (
+          <PokeCard
+            key={pokeStat.name}
+            characteristic={pokeStat.char}
+            fav={fav}
+            setFav={setFav}
+            compare={compare}
+            setCompare={setCompare}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

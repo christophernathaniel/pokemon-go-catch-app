@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PokeCard from "../Component/PokeCard";
 // https://blog.logrocket.com/using-localstorage-react-hooks/ - LocalStorage Hooks
 
-const Pokemon = () => {
+const Pokemon = ({ fav, setFav, compare, setCompare }) => {
   const navigate = useNavigate(); // Used to navigate to individual Project
   let name = useParams(); // Retrieve the URL parameters
   const [pokeStat, setPokeStat] = useState(null); // Set Pokemon State
@@ -31,7 +31,15 @@ const Pokemon = () => {
         Back
       </div>
       <div className="pokemon">
-        {pokeStat && <PokeCard characteristic={pokeStat} />}
+        {pokeStat && (
+          <PokeCard
+            characteristic={pokeStat}
+            fav={fav}
+            setFav={setFav}
+            compare={compare}
+            setCompare={setCompare}
+          />
+        )}
       </div>
     </>
   );

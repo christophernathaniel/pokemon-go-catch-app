@@ -3,8 +3,12 @@ import Pokemon from "./Pages/Pokemon";
 import Favourite from "./Pages/Favourite";
 import Compare from "./Pages/Compare";
 import PokeApp from "./Pages/PokeApp";
+import { useLocalStorage } from "./Hooks/useLocalStorage";
 
 function App() {
+  const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
+  const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
+
   return (
     <BrowserRouter>
       <ul>
@@ -16,9 +20,32 @@ function App() {
       </ul>
       <Routes>
         <Route path="/" element={<PokeApp />} />
-        <Route path="/pokemon/:name" element={<Pokemon />} />
-        <Route path="/favourite" element={<Favourite />} />
-        <Route path="/compare" element={<Compare />} />
+        <Route
+          path="/pokemon/:name"
+          element={
+            <Pokemon
+              fav={fav}
+              setFav={setFav}
+              compare={compare}
+              setCompare={setCompare}
+            />
+          }
+        />
+        <Route
+          path="/favourite"
+          element={
+            <Favourite
+              fav={fav}
+              setFav={setFav}
+              compare={compare}
+              setCompare={setCompare}
+            />
+          }
+        />
+        <Route
+          path="/compare"
+          element={<Compare compare={compare} setCompare={setCompare} />}
+        />
       </Routes>
     </BrowserRouter>
   );

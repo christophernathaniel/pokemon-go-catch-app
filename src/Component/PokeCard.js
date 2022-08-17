@@ -9,10 +9,7 @@
 
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
-const PokeCard = ({ characteristic }) => {
-  const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
-  const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
-
+const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   // Add to Favourites as a Local Storage Object
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
