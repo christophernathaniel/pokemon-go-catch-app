@@ -83,7 +83,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
           return item.name === characteristic.name;
         }) && (
           <button
-            className="poke-comparison"
+            className="poke-comparison ui-button "
             onClick={() => pokeCompare(characteristic)}
           >
             Compare
@@ -94,7 +94,7 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
           return item.name === characteristic.name;
         }) && (
           <button
-            className="poke-comparison"
+            className="poke-comparison ui-button "
             onClick={() => pokeRemoveCompare(characteristic)}
           >
             Uncompare

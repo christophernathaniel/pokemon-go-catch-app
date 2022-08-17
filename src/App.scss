@@ -3,6 +3,7 @@
   --app-background: #f1f1f1;
   --app-white: #ffffff;
   --app-color: #333;
+  --app-black: #333;
 
   --style-green: #43cd9c;
   --style-red: #ff3002;
@@ -136,4 +137,16 @@ h1 {
     font-size: 24px;
     opacity: 0.3;
   }
+}
+
+.ui-button {
+  color: var(--app-white);
+  background-color: var(--app-black);
+  height: 52px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
 }
