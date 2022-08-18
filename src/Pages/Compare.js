@@ -77,6 +77,8 @@ const Compare = ({ fav, setFav, compare, setCompare }) => {
           average={average}
         />
       ))}
+
+      {!compare.length && <p className="no-item">Please Add Comparison</p>}
     </div>
   );
 };

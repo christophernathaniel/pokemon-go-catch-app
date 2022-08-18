@@ -64,14 +64,54 @@ function PokeApp() {
         </button>
         {filterMenu && (
           <ul>
-            <li onClick={() => setPokeGenerationFilter(null)}>All</li>
-            <li onClick={() => setPokeGenerationFilter(2)}>2</li>
-            <li onClick={() => setPokeGenerationFilter(3)}>3</li>
-            <li onClick={() => setPokeGenerationFilter(4)}>4</li>
-            <li onClick={() => setPokeGenerationFilter(5)}>5</li>
-            <li onClick={() => setPokeGenerationFilter(6)}>6</li>
-            <li onClick={() => setPokeGenerationFilter(7)}>7</li>
-            <li onClick={() => setPokeGenerationFilter(8)}>8</li>
+            <li
+              className={!pokeGenerationFilter ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(null)}
+            >
+              All
+            </li>
+            <li
+              className={pokeGenerationFilter === 2 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(2)}
+            >
+              2
+            </li>
+            <li
+              className={pokeGenerationFilter === 3 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(3)}
+            >
+              3
+            </li>
+            <li
+              className={pokeGenerationFilter === 4 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(4)}
+            >
+              4
+            </li>
+            <li
+              className={pokeGenerationFilter === 5 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(5)}
+            >
+              5
+            </li>
+            <li
+              className={pokeGenerationFilter === 6 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(6)}
+            >
+              6
+            </li>
+            <li
+              className={pokeGenerationFilter === 7 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(7)}
+            >
+              7
+            </li>
+            <li
+              className={pokeGenerationFilter === 8 ? "active" : "noactive"}
+              onClick={() => setPokeGenerationFilter(8)}
+            >
+              8
+            </li>
           </ul>
         )}
       </div>

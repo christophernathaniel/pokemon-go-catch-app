@@ -17,6 +17,8 @@ const Favourite = ({ fav, setFav, compare, setCompare }) => {
           setCompare={setCompare}
         />
       ))}
+
+      {!fav.length && <p className="no-item">Please Add Favourite</p>}
     </div>
   );
 };
