@@ -53,3 +53,4 @@ Run serve. If the port 3000 is not used, the URL will likely be http://localhost
 1. Caching of Results. This would enable the pagination to be removed, and the API to use less requests. Pagination was used to avoid pulling in every pokemon all at once.
 2. Fight!, We have all the stats to put Pokemon against eachother. It wouldn't require too much further effort to have 5 rounds per fight, use the statistics (+20%/-20%) to create a random feel. Abilities may be more complicated to achieve.
 3. Better Looking Pokemon! The styling could look great; with good looking stats and more information to other parts of the API.
+4. Full Mobile / Dekstop Versions! Currently, this is in a self-contained frame. It wouldn't take too much more resource to make this work more fluidly.
