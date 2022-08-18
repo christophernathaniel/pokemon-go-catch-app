@@ -17,6 +17,7 @@ function PokeApp() {
   const [pokeSearchList, setPokeSearchList] = useState([]); // Current Pokemon Character List
   const [pokeGenerationFilter, setPokeGenerationFilter] = useState(null); // Current Generation Filter
   const [generationList, setGenerationList] = useState([]); // Current Generation List
+  const [filterMenu, setFilterMenu] = useState(false); // Filter Menu
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
@@ -51,16 +52,29 @@ function PokeApp() {
   // Build the Options for Generation Filter List
   function GenerationFilterList() {
     return (
-      <ul>
-        <li onClick={() => setPokeGenerationFilter(null)}>All</li>
-        <li onClick={() => setPokeGenerationFilter(2)}>2</li>
-        <li onClick={() => setPokeGenerationFilter(3)}>3</li>
-        <li onClick={() => setPokeGenerationFilter(4)}>4</li>
-        <li onClick={() => setPokeGenerationFilter(5)}>5</li>
-        <li onClick={() => setPokeGenerationFilter(6)}>6</li>
-        <li onClick={() => setPokeGenerationFilter(7)}>7</li>
-        <li onClick={() => setPokeGenerationFilter(8)}>8</li>
-      </ul>
+      <div className="ui-select">
+        <button
+          onClick={() => {
+            setFilterMenu(!filterMenu);
+          }}
+        >
+          {!pokeGenerationFilter && "Select"} {pokeGenerationFilter && "Change"}{" "}
+          Generation
+          {pokeGenerationFilter && ": " + pokeGenerationFilter}
+        </button>
+        {filterMenu && (
+          <ul>
+            <li onClick={() => setPokeGenerationFilter(null)}>All</li>
+            <li onClick={() => setPokeGenerationFilter(2)}>2</li>
+            <li onClick={() => setPokeGenerationFilter(3)}>3</li>
+            <li onClick={() => setPokeGenerationFilter(4)}>4</li>
+            <li onClick={() => setPokeGenerationFilter(5)}>5</li>
+            <li onClick={() => setPokeGenerationFilter(6)}>6</li>
+            <li onClick={() => setPokeGenerationFilter(7)}>7</li>
+            <li onClick={() => setPokeGenerationFilter(8)}>8</li>
+          </ul>
+        )}
+      </div>
     );
   }
 
@@ -75,6 +89,8 @@ function PokeApp() {
           }
         });
     }
+
+    setFilterMenu(false); // Always close menu when data is refreshed
   }, [pokeGenerationFilter]);
 
   // pokedex.filter((item) => {
