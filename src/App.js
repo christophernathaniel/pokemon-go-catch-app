@@ -23,7 +23,7 @@ function App() {
                 to={"/"}
               >
                 <BiShapeCircle />
-                Pokidex
+                Pokedex
               </NavLink>
             </li>
             <li>
