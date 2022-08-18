@@ -1,26 +1,26 @@
+// Comparison Goals:
+// -- Collect Pokepon
+// -- Request Values
+// -- Create an AVERAGE from all values
+// -- Display Colours / Opacity depending on the Average
+// -- Potentially Colour Grade (harsher Red or harsher Green) depending on the Average
+// -- Remove from Compare
+// -- Potentially Reorder from Compare
+
+// Use reduce to add all of the numbers together, and then device by items
+// This will create an Average
+
 import PokeCompare from "../Component/PokeCompare";
 import { useState, useEffect } from "react";
 
 const Compare = ({ fav, setFav, compare, setCompare }) => {
   const [average, setAverage] = useState([]);
 
-  // Collect Pokepon
-  // Request Values
-  // Create an AVERAGE from all values
-  // Display Red or Green depending on the Average
-  // Potentially Colour Grade (harsher Red or harsher Green) depending on the Average
-  // Remove from Compare
-  // Potentially Reorder from Compare
-
-  // Use reduce to add all of the numbers together, and then device by items
-  // This will create an Average
-
   useEffect(() => {
     let holdAverages = [];
 
     // Order of Values
     // HP, Attack, Defense, Special Attack, Special Defense, Speed
-
     setAverage(
       [
         ...holdAverages,
