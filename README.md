@@ -10,6 +10,10 @@ See the 3sidedcube developer test: https://github.com/3sidedcube/web-developer-t
 
 Handling Large Data Chunks: https://stackoverflow.com/questions/71380585/how-to-handle-large-sets-of-data-response-from-an-api-fetch-when-no-size-limit-c
 
+# App Preview
+
+https://62fddd89ed06d066f301e425--creative-crumble-ee65ea.netlify.app/
+
 # A brief "Getting Started guide" on how to open the project locally
 
 Instructions / Commands are for MAC OS X and Linux Users.
