@@ -176,3 +176,13 @@ h1 {
     }
   }
 }
+
+.no-item {
+  width: 100%;
+  display: flex;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 230px;
+  opacity: 0.5;
+}
