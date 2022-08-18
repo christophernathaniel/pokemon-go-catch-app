@@ -131,7 +131,7 @@ function PokeApp() {
     }
 
     setFilterMenu(false); // Always close menu when data is refreshed
-  }, [pokeGenerationFilter]);
+  }, [pokeGenerationFilter, totalResults]);
 
   // pokedex.filter((item) => {
   //   return item.toLowerCase().includes();

@@ -1,6 +1,5 @@
-import { useLocalStorage } from "../Hooks/useLocalStorage";
 import PokeCompare from "../Component/PokeCompare";
-import { useState, useEffect, componentDidMount } from "react";
+import { useState, useEffect } from "react";
 
 const Compare = ({ fav, setFav, compare, setCompare }) => {
   const [average, setAverage] = useState([]);

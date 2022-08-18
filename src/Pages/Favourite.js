@@ -1,4 +1,3 @@
-import { useLocalStorage } from "../Hooks/useLocalStorage";
 import PokeFav from "../Component/PokeFav";
 
 const Favourite = ({ fav, setFav, compare, setCompare }) => {

@@ -9,7 +9,7 @@
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaWeightHanging } from "react-icons/fa";
-import { TbLineHeight } from "react-icons/tb";
+
 import {
   GiBroadsword,
   GiGooeySword,
@@ -20,7 +20,7 @@ import {
 } from "react-icons/gi";
 import { BsFillShieldFill } from "react-icons/bs";
 import "./PokeCard.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   const [spriteKey, setSpriteKey] = useState(

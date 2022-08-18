@@ -11,13 +11,8 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import "./PokeFav.scss";
-import { useState } from "react";
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
-  const [spriteKey, setSpriteKey] = useState(
-    characteristic.sprites["front_default"]
-  );
-
   // Add to Favourites as a Local Storage Object
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
