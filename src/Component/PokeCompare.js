@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import NotificationContext from "../Context/notificationContext"; // Notification
 
 import {
   GiBroadsword,
@@ -20,6 +22,8 @@ const PokeCompare = ({
   setCompare,
   average,
 }) => {
+  const notification = useContext(NotificationContext); // Notification Context
+
   // Add to Favourites as a Local Storage Object
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
@@ -29,12 +33,20 @@ const PokeCompare = ({
     })
       ? console.log("already added")
       : setFav([...fav, { name: characteristic.name, char: characteristic }]);
+
+    notification.success(
+      "Pokemon " + characteristic.name + " added to favourites"
+    );
   }
 
   // Remove Pokemon from Favourites as a Local Storage Object
   function pokeRemoveFavourite(characteristic) {
     // Use Filter to remove Pokemon from Favourites
     setFav(fav.filter((item) => item.name !== characteristic.name));
+
+    notification.success(
+      "Pokemon " + characteristic.name + " removed to favourites"
+    );
   }
 
   // Remove Pokemon from Favourites as a Local Storage Object

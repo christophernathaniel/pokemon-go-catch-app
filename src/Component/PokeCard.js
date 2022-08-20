@@ -20,9 +20,12 @@ import {
 } from "react-icons/gi";
 import { BsFillShieldFill } from "react-icons/bs";
 import "./PokeCard.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import NotificationContext from "../Context/notificationContext"; // Notification
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
+  const notification = useContext(NotificationContext); // Notification Context
+
   const [spriteKey, setSpriteKey] = useState(
     characteristic.sprites["front_default"]
   );
@@ -31,17 +34,35 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
     // Size of Local Storage Limit is 5mb. Each Pokemon is 25kb. Approximate of 200 Pokemon.
-    fav.some((item) => {
+    let isAdded = fav.some((item) => {
       return item.name === characteristic.name;
     })
-      ? console.log("already added")
-      : setFav([...fav, { name: characteristic.name, char: characteristic }]);
+      ? false
+      : true;
+
+    if (isAdded) {
+      setFav([...fav, { name: characteristic.name, char: characteristic }]);
+      // setNotification([
+      notification.success(
+        "Pokemon " + characteristic.name + " added to favourites"
+      );
+    }
+
+    if (!isAdded) {
+      notification.error(
+        "Pokemon " + characteristic.name + " not added to favourites"
+      );
+    }
   }
 
   // Remove Pokemon from Favourites as a Local Storage Object
   function pokeRemoveFavourite(characteristic) {
     // Use Filter to remove Pokemon from Favourites
     setFav(fav.filter((item) => item.name !== characteristic.name));
+
+    notification.success(
+      "Pokemon " + characteristic.name + " removed to favourites"
+    );
   }
 
   // Add to Favourites as a Local Storage Object

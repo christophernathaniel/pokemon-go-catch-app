@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import NotificationContext from "../Context/notificationContext"; // Notification
 
 import "./PokeFav.scss";
 
 const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
+  const notification = useContext(NotificationContext); // Notification Context
+
   // Add to Favourites as a Local Storage Object
   function pokeFavourite(characteristic) {
     // Refactored to allow the entire character to be added to local storage
@@ -19,6 +23,10 @@ const PokeCard = ({ characteristic, fav, setFav, compare, setCompare }) => {
   function pokeRemoveFavourite(characteristic) {
     // Use Filter to remove Pokemon from Favourites
     setFav(fav.filter((item) => item.name !== characteristic.name));
+
+    notification.success(
+      "Pokemon " + characteristic.name + " removed to favourites"
+    );
   }
 
   return (
