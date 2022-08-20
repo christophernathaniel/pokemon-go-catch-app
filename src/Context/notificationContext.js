@@ -1,6 +1,6 @@
 // https://jujuontheweb.medium.com/react-usecontext-hook-to-make-an-alert-notification-system-for-your-entire-application-721b4c6b7d0f
 
-import { createContext, useState, useRef, useEffect } from "react";
+import { createContext, useState, useRef } from "react";
 
 const NotificationContext = createContext({
   notification: null,
