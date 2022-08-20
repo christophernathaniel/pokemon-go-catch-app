@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+// https://jujuontheweb.medium.com/react-usecontext-hook-to-make-an-alert-notification-system-for-your-entire-application-721b4c6b7d0f
+
+import { createContext, useState, useRef, useEffect } from "react";
 
 const NotificationContext = createContext({
   notification: null,
@@ -15,28 +17,28 @@ const STATES = {
 const NotificationProvider = (props) => {
   const [notification, setNotification] = useState(null);
   const [notificationText, setNotificationText] = useState(null);
+  const timerId = useRef(null);
+
   const success = (text) => {
     window.scroll(0, 0);
     setNotificationText(text);
     setNotification(STATES.SUCCESS);
-
-    // Clear Notification after 5 seconds
-    let timeout = setTimeout(() => {
-      clear();
-    }, 3000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
+    clear();
   };
   const error = (text) => {
     window.scroll(0, 0);
     setNotificationText(text);
     setNotification(STATES.ERROR);
+    clear();
   };
   const clear = () => {
-    setNotificationText(null);
-    setNotification(null);
+    clearTimeout(timerId.current);
+
+    timerId.current = window.setTimeout(() => {
+      clearTimeout(timerId.current);
+      setNotificationText(null);
+      setNotification(null);
+    }, 3000);
   };
   return (
     <NotificationContext.Provider
