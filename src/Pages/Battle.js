@@ -1,12 +1,11 @@
 /* Currently Under Construction */
 
 import { useState, useEffect } from "react";
+import "./Battle.scss";
 
 const Battle = ({ fav, setFav }) => {
   const [pokemonSelection, setPokemonSelection] = useState([0, 1]);
   const [selection, setSelection] = useState(1);
-
-  console.log(fav);
 
   // Manage the Pokemon List
   function PokemonList({ fav, selection }) {
@@ -21,13 +20,21 @@ const Battle = ({ fav, setFav }) => {
     }
 
     // Output component for Pokemon List
-    return fav.map((item, index) => {
-      return (
-        <p onClick={() => makeSelection(item, selection)} key={item.name}>
-          {item.name}
-        </p>
-      );
-    });
+    console.log(fav.length);
+    if (fav.length > 1) {
+      return fav.map((item, index) => {
+        return (
+          <div onClick={() => makeSelection(item, selection)} key={item.name}>
+            {item.char && (
+              <img src={item.char.sprites.front_default} alt={item.name} />
+            )}
+            {item.name}
+          </div>
+        );
+      });
+    } else {
+      return <p className="no-item-small">Please Add Pokemon to Favourites</p>;
+    }
   }
 
   // Change the Selection
@@ -37,11 +44,16 @@ const Battle = ({ fav, setFav }) => {
       let count = index + 1;
       return (
         <div
+          key={index}
           onClick={() => {
             setSelection(count);
           }}
+          className={selection === count ? "selection active" : "selection"}
         >
-          test
+          <div class="battle-selection-identifier">Player {count}</div>
+          {item.char && (
+            <img src={item.char.sprites.front_default} alt={item.name} />
+          )}
           {item.name}
         </div>
       );
@@ -49,9 +61,15 @@ const Battle = ({ fav, setFav }) => {
   }
 
   return (
-    <div>
-      <Selection pokemonSelection={pokemonSelection} />
-      <PokemonList fav={fav} selection={selection} />
+    <div className="battle ui-scrollable">
+      <h2 className="battle-theme-title">Select your Player</h2>
+      <div className="pokemon-selection">
+        <Selection pokemonSelection={pokemonSelection} />
+      </div>
+      <h2 className="battle-theme-title">Select your Pokemon</h2>
+      <div className="battle-selection-list">
+        <PokemonList fav={fav} selection={selection} />
+      </div>
     </div>
   );
 };

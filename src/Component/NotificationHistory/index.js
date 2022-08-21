@@ -4,7 +4,6 @@ import "./index.scss";
 
 const NotificationBar = () => {
   const notificationCtx = useContext(NotificationContext);
-  console.log(notificationCtx.notificationHistory);
 
   function HistoryList() {
     return notificationCtx.notificationHistory.map((item, index) => {
