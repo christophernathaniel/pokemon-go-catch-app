@@ -3,8 +3,7 @@
 import { useState } from "react";
 import "./Battle.scss";
 
-const Battle = ({ fav, setFav }) => {
-  const [pokemonSelection, setPokemonSelection] = useState([0, 1]);
+const Battle = ({ fav, setFav, pokemonSelection, setPokemonSelection }) => {
   const [selection, setSelection] = useState(1);
 
   // Manage the Pokemon List
@@ -20,11 +19,16 @@ const Battle = ({ fav, setFav }) => {
     }
 
     // Output component for Pokemon List
-    console.log(fav.length);
     if (fav.length > 1) {
       return fav.map((item, index) => {
         return (
-          <div onClick={() => makeSelection(item, selection)} key={item.name}>
+          <div
+            className={
+              pokemonSelection[selection - 1].name === item.name ? "active" : ""
+            }
+            onClick={() => makeSelection(item, selection)}
+            key={item.name}
+          >
             {item.char && (
               <img src={item.char.sprites.front_default} alt={item.name} />
             )}
@@ -50,11 +54,13 @@ const Battle = ({ fav, setFav }) => {
           }}
           className={selection === count ? "selection active" : "selection"}
         >
-          <div class="battle-selection-identifier">Player {count}</div>
+          <div className="battle-selection-identifier">Player {count}</div>
           {item.char && (
-            <img src={item.char.sprites.front_default} alt={item.name} />
+            <>
+              <img src={item.char.sprites.front_default} alt={item.name} />
+              <div className="battle-selection-name">{item.name}</div>
+            </>
           )}
-          {item.name}
         </div>
       );
     });

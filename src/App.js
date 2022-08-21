@@ -1,22 +1,26 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import "./App.scss";
+
+import { useLocalStorage } from "./Hooks/useLocalStorage";
+import { NotificationProvider } from "./Context/notificationContext";
+
+import { BiHeart, BiGitCompare, BiNotification } from "react-icons/bi";
+import { MdCatchingPokemon } from "react-icons/md";
+import { GiCardRandom } from "react-icons/gi";
+
 import Pokemon from "./Pages/Pokemon";
 import Favourite from "./Pages/Favourite";
 import Compare from "./Pages/Compare";
 import PokeApp from "./Pages/PokeApp";
 import Battle from "./Pages/Battle";
 import Activity from "./Pages/Activity";
-
-import { useLocalStorage } from "./Hooks/useLocalStorage";
-import "./App.scss";
-import { BiHeart, BiGitCompare, BiNotification } from "react-icons/bi";
-import { NotificationProvider } from "./Context/notificationContext";
 import NotificationBar from "./Component/Notification";
-import { MdCatchingPokemon } from "react-icons/md";
-import { GiCardRandom } from "react-icons/gi";
 
 function App() {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
   const [compare, setCompare] = useLocalStorage("compare", []); // Use LocalStorage Hooks
+  const [pokemonSelection, setPokemonSelection] = useState([0, 1]);
 
   return (
     <NotificationProvider>
@@ -136,7 +140,14 @@ function App() {
                 />
                 <Route
                   path="/battle"
-                  element={<Battle fav={fav} setFav={setFav} />}
+                  element={
+                    <Battle
+                      fav={fav}
+                      setFav={setFav}
+                      pokemonSelection={pokemonSelection}
+                      setPokemonSelection={setPokemonSelection}
+                    />
+                  }
                 />
                 <Route path="/activity" element={<Activity />} />
               </Routes>
