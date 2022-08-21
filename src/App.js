@@ -14,6 +14,7 @@ import {
 } from "react-icons/bi";
 import { NotificationProvider } from "./Context/notificationContext";
 import NotificationBar from "./Component/Notification";
+import { MdCatchingPokemon } from "react-icons/md";
 
 function App() {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
@@ -35,7 +36,7 @@ function App() {
                   to={"/"}
                   tabIndex="1"
                 >
-                  <BiShapeCircle />
+                  <MdCatchingPokemon />
                   Pokedex
                 </NavLink>
               </li>
