@@ -5,6 +5,7 @@ import { createContext, useState, useRef } from "react";
 const NotificationContext = createContext({
   notification: null,
   notificationText: null,
+  notificationHistory: [],
   success: () => {},
   error: () => {},
 });
@@ -17,12 +18,20 @@ const STATES = {
 const NotificationProvider = (props) => {
   const [notification, setNotification] = useState(null);
   const [notificationText, setNotificationText] = useState(null);
+  const [notificationHistory, setNotificationHistory] = useState([]);
+
   const timerId = useRef(null);
 
   const success = (text) => {
     window.scroll(0, 0);
     setNotificationText(text);
     setNotification(STATES.SUCCESS);
+    setNotificationHistory([
+      ...notificationHistory,
+      { text, state: STATES.SUCCESS },
+    ]);
+
+    console.log(notificationHistory);
     clear();
   };
   const error = (text) => {
@@ -48,6 +57,7 @@ const NotificationProvider = (props) => {
         clear,
         notification,
         notificationText,
+        notificationHistory,
       }}
     >
       {props.children}

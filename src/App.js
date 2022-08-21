@@ -3,9 +3,15 @@ import Pokemon from "./Pages/Pokemon";
 import Favourite from "./Pages/Favourite";
 import Compare from "./Pages/Compare";
 import PokeApp from "./Pages/PokeApp";
+import Activity from "./Pages/Activity";
 import { useLocalStorage } from "./Hooks/useLocalStorage";
 import "./App.scss";
-import { BiShapeCircle, BiHeart, BiGitCompare } from "react-icons/bi";
+import {
+  BiShapeCircle,
+  BiHeart,
+  BiGitCompare,
+  BiNotification,
+} from "react-icons/bi";
 import { NotificationProvider } from "./Context/notificationContext";
 import NotificationBar from "./Component/Notification";
 
@@ -54,7 +60,7 @@ function App() {
                   to={"/compare"}
                 >
                   <BiGitCompare />
-                  Compare{" "}
+                  Compare
                   {compare.length >= 1 && (
                     <span className="ui-navigation-count">
                       {compare.length}
@@ -62,7 +68,19 @@ function App() {
                   )}
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "inactive"
+                  }
+                  to={"/activity"}
+                >
+                  <BiNotification />
+                  Activity
+                </NavLink>
+              </li>
             </ul>
+
             <div className="ui-body">
               {/* <div className="test" onClick={() => increaseCount()}>
               Count {count}
@@ -102,6 +120,7 @@ function App() {
                     />
                   }
                 />
+                <Route path="/activity" element={<Activity />} />
               </Routes>
             </div>
           </BrowserRouter>
