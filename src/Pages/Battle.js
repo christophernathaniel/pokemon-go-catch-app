@@ -79,7 +79,7 @@ const Battle = ({ fav, setFav, pokemonSelection, setPokemonSelection }) => {
       {console.log(pokemonSelection)}
       {pokemonSelection[0].name && pokemonSelection[1].name && (
         <div className="battle-selection-button">
-          <span class="battle-btn-group">
+          <span className="battle-btn-group">
             <span className="battle-btn-name">{pokemonSelection[0].name}</span>
             <span className="battle-btn-vs">VS</span>{" "}
             <span className="battle-btn-name">{pokemonSelection[1].name}</span>
