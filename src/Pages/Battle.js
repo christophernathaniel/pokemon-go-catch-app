@@ -68,14 +68,24 @@ const Battle = ({ fav, setFav, pokemonSelection, setPokemonSelection }) => {
 
   return (
     <div className="battle ui-scrollable">
-      <h2 className="battle-theme-title">Select your Player</h2>
+      <h2 className="battle-theme-title">Select your Pokemon</h2>
       <div className="pokemon-selection">
         <Selection pokemonSelection={pokemonSelection} />
       </div>
-      <h2 className="battle-theme-title">Select your Pokemon</h2>
+      <h2 className="battle-theme-subtitle">Character Choice</h2>
       <div className="battle-selection-list">
         <PokemonList fav={fav} selection={selection} />
       </div>
+      {console.log(pokemonSelection)}
+      {pokemonSelection[0].name && pokemonSelection[1].name && (
+        <div className="battle-selection-button">
+          <span class="battle-btn-group">
+            <span className="battle-btn-name">{pokemonSelection[0].name}</span>
+            <span className="battle-btn-vs">VS</span>{" "}
+            <span className="battle-btn-name">{pokemonSelection[1].name}</span>
+          </span>
+        </div>
+      )}
     </div>
   );
 };

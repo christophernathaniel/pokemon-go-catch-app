@@ -8,6 +8,17 @@
     color: var(--style-yellow);
     letter-spacing: -0.8px;
   }
+
+  .battle-theme-subtitle {
+    color: #fff;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+
   .pokemon-selection {
     gap: 20px;
     display: flex;
@@ -83,5 +94,33 @@
     padding: 10px 20px;
     border-radius: 20px;
     text-transform: capitalize;
+  }
+
+  .battle-selection-button {
+    position: absolute;
+    bottom: 80px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    left: 0px;
+    background-color: var(--app-black);
+    color: var(--app-white);
+  }
+
+  .battle-btn-group {
+    display: block;
+  }
+
+  .battle-btn-name {
+    text-transform: capitalize;
+  }
+
+  .battle-btn-vs {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: 600;
   }
 }
