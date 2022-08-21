@@ -3,7 +3,9 @@ import Pokemon from "./Pages/Pokemon";
 import Favourite from "./Pages/Favourite";
 import Compare from "./Pages/Compare";
 import PokeApp from "./Pages/PokeApp";
+import Battle from "./Pages/Battle";
 import Activity from "./Pages/Activity";
+
 import { useLocalStorage } from "./Hooks/useLocalStorage";
 import "./App.scss";
 import {
@@ -15,6 +17,7 @@ import {
 import { NotificationProvider } from "./Context/notificationContext";
 import NotificationBar from "./Component/Notification";
 import { MdCatchingPokemon } from "react-icons/md";
+import { GiCardRandom } from "react-icons/gi";
 
 function App() {
   const [fav, setFav] = useLocalStorage("fav", []); // Use LocalStorage Hooks
@@ -72,6 +75,20 @@ function App() {
                   )}
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "active" : "inactive"
+                  }
+                  to={"/battle"}
+                  tabIndex="4"
+                >
+                  <GiCardRandom />
+                  Battle
+                </NavLink>
+              </li>
+
               <li>
                 <NavLink
                   className={({ isActive }) =>
@@ -121,6 +138,10 @@ function App() {
                       setCompare={setCompare}
                     />
                   }
+                />
+                <Route
+                  path="/battle"
+                  element={<Battle fav={fav} setFav={setFav} />}
                 />
                 <Route path="/activity" element={<Activity />} />
               </Routes>
