@@ -1,6 +1,6 @@
 /* Currently Under Construction */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Battle.scss";
 
 const Battle = ({ fav, setFav }) => {
