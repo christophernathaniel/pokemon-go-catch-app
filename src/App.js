@@ -33,6 +33,7 @@ function App() {
                     isActive ? "active" : "inactive"
                   }
                   to={"/"}
+                  tabIndex="1"
                 >
                   <BiShapeCircle />
                   Pokedex
@@ -44,6 +45,7 @@ function App() {
                     isActive ? "active" : "inactive"
                   }
                   to={"/favourite"}
+                  tabIndex="2"
                 >
                   <BiHeart />
                   Favourite
@@ -58,6 +60,7 @@ function App() {
                     isActive ? "active" : "inactive"
                   }
                   to={"/compare"}
+                  tabIndex="3"
                 >
                   <BiGitCompare />
                   Compare
@@ -74,6 +77,7 @@ function App() {
                     isActive ? "active" : "inactive"
                   }
                   to={"/activity"}
+                  tabIndex="4"
                 >
                   <BiNotification />
                   Activity
@@ -82,9 +86,6 @@ function App() {
             </ul>
 
             <div className="ui-body">
-              {/* <div className="test" onClick={() => increaseCount()}>
-              Count {count}
-            </div> */}
               <Routes>
                 <Route path="/" element={<PokeApp />} />
                 <Route
