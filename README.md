@@ -12,7 +12,7 @@ Handling Large Data Chunks: https://stackoverflow.com/questions/71380585/how-to-
 
 # App Preview
 
-https://62fddd89ed06d066f301e425--creative-crumble-ee65ea.netlify.app/
+https://creative-crumble-ee65ea.netlify.app/
 
 # A brief "Getting Started guide" on how to open the project locally
 
