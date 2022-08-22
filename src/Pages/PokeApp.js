@@ -18,6 +18,7 @@ function PokeApp() {
   const [pokeGenerationFilter, setPokeGenerationFilter] = useState(null); // Current Generation Filter
   const [generationList, setGenerationList] = useState([]); // Current Generation List
   const [filterMenu, setFilterMenu] = useState(false); // Filter Menu
+  const filterMenuCount = [2, 3, 4, 5, 6, 7, 8]; // Filter Menu Count
 
   // Note: the API doesn't return a search API. We have two options.
   // To Cache the result OR to use full-term search
@@ -58,7 +59,8 @@ function PokeApp() {
             setFilterMenu(!filterMenu);
           }}
         >
-          {!pokeGenerationFilter && "Select"} {pokeGenerationFilter && "Change"}{" "}
+          {!pokeGenerationFilter && "Select "}
+          {pokeGenerationFilter && "Change "}
           Generation
           {pokeGenerationFilter && ": " + pokeGenerationFilter}
         </button>
@@ -70,48 +72,19 @@ function PokeApp() {
             >
               All
             </li>
-            <li
-              className={pokeGenerationFilter === 2 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(2)}
-            >
-              2
-            </li>
-            <li
-              className={pokeGenerationFilter === 3 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(3)}
-            >
-              3
-            </li>
-            <li
-              className={pokeGenerationFilter === 4 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(4)}
-            >
-              4
-            </li>
-            <li
-              className={pokeGenerationFilter === 5 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(5)}
-            >
-              5
-            </li>
-            <li
-              className={pokeGenerationFilter === 6 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(6)}
-            >
-              6
-            </li>
-            <li
-              className={pokeGenerationFilter === 7 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(7)}
-            >
-              7
-            </li>
-            <li
-              className={pokeGenerationFilter === 8 ? "active" : "noactive"}
-              onClick={() => setPokeGenerationFilter(8)}
-            >
-              8
-            </li>
+            {filterMenuCount.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  className={
+                    pokeGenerationFilter === item ? "active" : "noactive"
+                  }
+                  onClick={() => setPokeGenerationFilter(item)}
+                >
+                  {item}
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
