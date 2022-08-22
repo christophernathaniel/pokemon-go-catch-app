@@ -31,7 +31,6 @@ const NotificationProvider = (props) => {
       { text, state: STATES.SUCCESS },
     ]);
 
-    console.log(notificationHistory);
     clear();
   };
   const error = (text) => {
